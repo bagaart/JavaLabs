@@ -2,11 +2,6 @@ package lab1;
 
 public class task {
     public static void main(String[] args){
-        if (args.length == 0) {
-            System.out.println("Не введена последовательность целых чисел.");
-            return;
-        }
-
         int a = 0;
         int b = 10;
 
@@ -26,7 +21,6 @@ public class task {
                 flag = 1;
             }
         }
-
         if (flag == 0) {
             System.out.printf("Чисел принадлежащих отрезку[%d, %d] нет.", a, b);
         }

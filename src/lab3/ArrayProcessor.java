@@ -8,12 +8,12 @@ public class ArrayProcessor extends Observable {
     public void setArray(int[] array) {
         this.array = array;
         setChanged();
-        notifyObservers(new ResourseEvent("Доступ к массиву"));
+        notifyObservers(new ResourceEvent("Доступ к массиву"));
     }
 
     public int[] getArray() {
         setChanged();
-        notifyObservers(new ResourseEvent("Чтение массива"));
+        notifyObservers(new ResourceEvent("Чтение массива"));
         return array;
     }
 }

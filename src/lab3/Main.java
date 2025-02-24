@@ -1,31 +1,36 @@
 package lab3;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) throws IOException {
+        PrintWriter logWriter;
         Scanner scanner = new Scanner(System.in);
+        ArrayList<String> Logs = new ArrayList<>();
 
-        System.out.println("Введите путь к файлу Журнала");
-        String logPath = scanner.nextLine();
-
-        if (logPath.isEmpty()) {
-            logPath = "default_log.txt";
-        }
-
-        ResourceObserver observer = new ResourceObserver(logPath);
+        ArrayProcessorObserver arrayProcessorObserver = new ArrayProcessorObserver(Logs);
+        ConsoleWriterObserver consoleWriterObserver = new ConsoleWriterObserver(Logs);
+        FileReaderObserver fileReaderObserver = new FileReaderObserver(Logs);
 
         ArrayProcessor arrayProcessor = new ArrayProcessor();
         ConsoleWriter consoleWriter = new ConsoleWriter();
         FileReaderObservable fileReaderObservable = new FileReaderObservable();
 
-        arrayProcessor.addObserver(observer);
-        consoleWriter.addObserver(observer);
-        fileReaderObservable.addObserver(observer);
+        arrayProcessor.addObserver(arrayProcessorObserver);
+        consoleWriter.addObserver(consoleWriterObserver);
+        fileReaderObservable.addObserver(fileReaderObserver);
 
         try {
+            consoleWriter.write("Введите путь к файлу Журнала");
+            String logPath = scanner.nextLine();
+
+            if (logPath.isEmpty()) {
+                logPath = "default_log.txt";
+            }
+
             consoleWriter.write("Введите путь к файлу с данными или 0 для ввода с консоли: ");
             String dataPath = scanner.nextLine();
             int[] numbers;
@@ -59,6 +64,13 @@ public class Main {
             if (!found) {
                 consoleWriter.write("Нет чисел в диапазоне [" + a + ", " + b + "]");
             }
+
+            logWriter = new PrintWriter(new FileWriter(logPath, true));
+            for (String log : Logs) {
+                logWriter.println(log);
+            }
+            logWriter.flush();
+
         } catch (FileNotFoundException e) {
             consoleWriter.write("Error: " + e.getMessage());
         } catch (NumberFormatException e) {

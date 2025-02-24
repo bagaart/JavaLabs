@@ -1,9 +1,9 @@
 package lab3;
 
-public class ResourseEvent {
+public class ResourceEvent {
     private String message;
 
-    public ResourseEvent(String message) {
+    public ResourceEvent(String message) {
         this.message = message;
     }
 

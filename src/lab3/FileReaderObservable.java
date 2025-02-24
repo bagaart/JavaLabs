@@ -10,7 +10,7 @@ import java.util.Scanner;
 public class FileReaderObservable extends Observable {
     public int[] readNumbers(String path) throws FileNotFoundException {
         setChanged();
-        notifyObservers(new ResourseEvent("Чтение из файла: " + path));
+        notifyObservers(new ResourceEvent("Чтение из файла: " + path));
 
         List<Integer> numbers = new ArrayList<>();
         try (Scanner scanner = new Scanner(new File(path))) {

@@ -9,7 +9,7 @@ import java.util.Observable;
 import java.util.Observer;
 
 public class ArrayProcessorObserver implements Observer {
-    private ArrayList<String> logWriter;
+    private final ArrayList<String> logWriter;
 
     public ArrayProcessorObserver(ArrayList<String> logs) throws IOException {
         logWriter = logs;

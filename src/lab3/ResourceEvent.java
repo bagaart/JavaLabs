@@ -1,7 +1,7 @@
 package lab3;
 
 public class ResourceEvent {
-    private String message;
+    private final String message;
 
     public ResourceEvent(String message) {
         this.message = message;

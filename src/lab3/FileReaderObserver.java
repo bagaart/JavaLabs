@@ -6,7 +6,7 @@ import java.util.Observable;
 import java.util.Observer;
 
 public class FileReaderObserver implements Observer {
-    private ArrayList<String> logWriter;
+    private final ArrayList<String> logWriter;
 
     public FileReaderObserver(ArrayList<String> logs) throws IOException {
         logWriter = logs;
